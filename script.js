@@ -1,37 +1,38 @@
-console.log("Smart Task Management Board");
+console.log("Smart Task Management Board Loaded");
 
-// Drag Start
+// DRAG START
 function drag(event) {
-    event.dataTransfer.setData("text", event.target.id);
+    event.dataTransfer.setData("text/plain", event.target.id);
 }
 
-// Allow Drop
+// ALLOW DROP
 function allowDrop(event) {
     event.preventDefault();
 }
 
-// Drop
+// DROP
 function drop(event) {
     event.preventDefault();
 
-    let taskId = event.dataTransfer.getData("text");
+    let taskId = event.dataTransfer.getData("text/plain");
     let task = document.getElementById(taskId);
 
-    event.target.appendChild(task);
+    let column = event.target.closest(".column");
+
+    if (column) {
+        column.appendChild(task);
+    }
 }
-const addTaskBtn =
-document.getElementById("addTaskBtn");
 
-addTaskBtn.addEventListener("click", function(){
+const addTaskBtn = document.getElementById("addTaskBtn");
 
-    const taskName =
-    document.getElementById("taskInput").value;
+addTaskBtn.addEventListener("click", function () {
 
-    const priority =
-    document.getElementById("priority").value;
+    const taskName = document.getElementById("taskInput").value;
 
-    if(taskName === "")
-    {
+    const priority = document.getElementById("priority").value;
+
+    if (taskName === "") {
         alert("Please Enter Task");
         return;
     }
@@ -42,21 +43,20 @@ addTaskBtn.addEventListener("click", function(){
         <h3>${taskName}</h3>
         <p>Priority: ${priority}</p>
     `;
-    if(priority === "High"){
-    task.style.borderLeft = "5px solid red";
-}
-else if(priority === "Medium"){
-    task.style.borderLeft = "5px solid orange";
-}
-else{
-    task.style.borderLeft = "5px solid green";
-}
-    
+
+    if (priority === "High") {
+        task.style.borderLeft = "5px solid red";
+    }
+    else if (priority === "Medium") {
+        task.style.borderLeft = "5px solid orange";
+    }
+    else {
+        task.style.borderLeft = "5px solid green";
+    }
 
     document
-    .getElementById("taskList")
-    .appendChild(task);
+        .getElementById("taskList")
+        .appendChild(task);
 
-    document.getElementById("taskInput").value="";
+    document.getElementById("taskInput").value = "";
 });
-

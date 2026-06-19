@@ -4,10 +4,12 @@
     <title>Smart Task Management Board</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <h1>Smart Task Management Board</h1>
+<h1>Smart Task Management Board</h1>
 
+<<<<<<< HEAD
     <div>
         <input
 type="text"
@@ -27,11 +29,30 @@ placeholder="Enter Task">
 <div id="taskList"></div>
         
     </div>
+=======
+<!-- INPUT SECTION -->
+<div>
+    <input type="text" placeholder="Enter Task">
+    
+    <select>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select>
 
-    <hr>
+    <button>Add Task</button>
+</div>
+>>>>>>> 2855764 (Added drag and drop functionality)
 
-    <div>
+<hr>
+
+<!-- BOARD -->
+<div style="display: flex; gap: 20px; justify-content: center;">
+
+    <!-- TO DO -->
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>📝 To Do</h2>
+<<<<<<< HEAD
         <!--Task Cards Design-->
         <div class="task-card">
             <h3>Complete HTML Project</h3>
@@ -46,16 +67,31 @@ placeholder="Enter Task">
         <div class="task-card">
             <h3>Read CSS Notes</h3>
             <span class="priority low">Low</span>
+=======
+
+        <div id="task1" class="task" draggable="true" ondragstart="drag(event)">
+            Task 1
+        </div>
+
+        <div id="task2" class="task" draggable="true" ondragstart="drag(event)">
+            Task 2
+>>>>>>> 4b68696 (Updated drag and drop)
         </div>
     </div>
 
-    <div>
+    <!-- IN PROGRESS -->
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>🔄 In Progress</h2>
     </div>
 
-    <div>
+    <!-- COMPLETED -->
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>✅ Completed</h2>
     </div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
     <script src="script.js"></script>
