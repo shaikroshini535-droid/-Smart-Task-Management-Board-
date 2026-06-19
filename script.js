@@ -19,3 +19,44 @@ function drop(event) {
 
     event.target.appendChild(task);
 }
+const addTaskBtn =
+document.getElementById("addTaskBtn");
+
+addTaskBtn.addEventListener("click", function(){
+
+    const taskName =
+    document.getElementById("taskInput").value;
+
+    const priority =
+    document.getElementById("priority").value;
+
+    if(taskName === "")
+    {
+        alert("Please Enter Task");
+        return;
+    }
+
+    const task = document.createElement("div");
+
+    task.innerHTML = `
+        <h3>${taskName}</h3>
+        <p>Priority: ${priority}</p>
+    `;
+    if(priority === "High"){
+    task.style.borderLeft = "5px solid red";
+}
+else if(priority === "Medium"){
+    task.style.borderLeft = "5px solid orange";
+}
+else{
+    task.style.borderLeft = "5px solid green";
+}
+    
+
+    document
+    .getElementById("taskList")
+    .appendChild(task);
+
+    document.getElementById("taskInput").value="";
+});
+
