@@ -1,5 +1,7 @@
 console.log("Smart Task Management Board Loaded");
 
+let taskCounter = 0;
+
 // DRAG START
 function drag(event) {
     event.dataTransfer.setData("text/plain", event.target.id);
@@ -29,7 +31,6 @@ const addTaskBtn = document.getElementById("addTaskBtn");
 addTaskBtn.addEventListener("click", function () {
 
     const taskName = document.getElementById("taskInput").value;
-
     const priority = document.getElementById("priority").value;
 
     if (taskName === "") {
@@ -37,7 +38,13 @@ addTaskBtn.addEventListener("click", function () {
         return;
     }
 
+    taskCounter++;
+
     const task = document.createElement("div");
+
+    task.id = "task" + taskCounter;
+    task.draggable = true;
+    task.ondragstart = drag;
 
     task.innerHTML = `
         <h3>${taskName}</h3>
@@ -54,9 +61,12 @@ addTaskBtn.addEventListener("click", function () {
         task.style.borderLeft = "5px solid green";
     }
 
-    document
-        .getElementById("taskList")
-        .appendChild(task);
+    task.style.padding = "10px";
+    task.style.margin = "10px";
+    task.style.backgroundColor = "white";
+    task.style.cursor = "grab";
+
+    document.getElementById("todo").appendChild(task);
 
     document.getElementById("taskInput").value = "";
 });
